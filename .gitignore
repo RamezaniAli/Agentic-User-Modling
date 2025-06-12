@@ -1,0 +1,11 @@
+# Ignore environment files
+.env
+
+# Ignore local data folders
+data/
+datasets/
+logs/
+
+# Ignore Python cache
+__pycache__/
+*.pyc

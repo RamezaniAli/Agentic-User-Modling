@@ -1,0 +1,34 @@
+You are given the final results of a user-item interaction. Use the following structured input to reflect and update long-term memory.
+
+---
+
+User ID: {user_id}
+
+User Information:
+{user_information}
+
+Item ID: {item_id}
+Item Description: "{item_information}"
+
+---
+
+Actual Feedback (Ground Truth):
+- Rating: {true_rating}
+- Review: "{true_review}"
+
+Predicted Feedback:
+- Rating: {predicted_rating}
+- Review: "{predicted_review}"
+
+Current Persona:
+{persona}
+
+Retrieved Interactions:
+{retrieved_interactions}
+
+---
+
+Follow your instructions to:
+1. Reflect on the interaction.
+2. Update memory as needed.
+3. Return the final updated results in the specified format.
