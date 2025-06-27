@@ -1,6 +1,6 @@
 from typing import List, Dict, Optional
 from langchain.tools import tool
-from config import TOP_K_PERSONA, TOP_K_INTERACTION
+from agentic_rag.config import TOP_K_PERSONA, TOP_K_INTERACTION
 from agent.memory_manager import MemoryManager
 import uuid
 
@@ -124,7 +124,7 @@ def update_persona_tool(user_id: str, persona_content: str) -> bool:
             return memory.update_chunk(updates)
         else:
             # Create new persona
-            persona_chunk_id = f"persona_{user_id}_{uuid.uuid4()}" 
+            persona_chunk_id = f"{user_id}_00" 
             memory.add_chunk(
                 text=persona_content,
                 metadata=metadata,
@@ -141,17 +141,18 @@ def update_persona_tool(user_id: str, persona_content: str) -> bool:
 @tool
 def add_new_interaction_tool(
     user_id: str,
-    item_id: str,
+    int_id: str,
     rating: float,
-    interaction_content: str
+    review: str,
+    item_information: str
 ) -> bool:
     """
     Add a new interaction record for a user.
 
     Args:
         user_id (str): The unique identifier of the user.
-        item_id (str): The unique identifier of the item.
         rating (float): Rating given by the user for the interaction (0.0 to 5.0).
+        review (str): 
         interaction_content (str): Text content of the interaction (title, review, snippet, etc.).
 
     Returns:
@@ -163,25 +164,23 @@ def add_new_interaction_tool(
     try:
         metadata = {
             "user_id": user_id,
-            "item_id": item_id,
-            "rating": rating,
+            "true_rating": rating,
+            "true_review": review,
             "updated": 'False'
         }
         
-        # Generate unique chunk_id for the interaction
-        interaction_chunk_id = f"interaction_{user_id}_{item_id}_{uuid.uuid4()}"
         
         memory.add_chunk(
-            text=interaction_content,
+            text=item_information,
             metadata=metadata,
             chunk_type="interaction",
-            chunk_id=interaction_chunk_id
+            chunk_id=int_id
         )
         
         return True
         
     except Exception as e:
-        print(f"Error adding interaction for user {user_id} and item {item_id}: {e}")
+        print(f"Error adding interaction for user {user_id} and item {int_id}: {e}")
         return False
 
 
@@ -191,20 +190,40 @@ def update_interaction_tool(interactions: List[Dict]) -> bool:
     Update one or multiple interaction records.
     Agent can provide a list with one element for single update, or multiple elements for batch update.
 
-    Args:
-        interactions (List[Dict]): List of interaction updates. Each dict should contain:
-            - chunk_id (str, required): Unique identifier of the interaction chunk to update
-            - content (str, required): New text content of the interaction
+Args:
+    interactions (List[Dict]): List of interaction updates. Each dict should contain:
+        - chunk_id (str, required): Unique identifier of the retrieved chunk.
+        - note (str, required): A brief summary describing the chunk’s influence in this prediction task. It should reflect:
+            - the type of item involved (e.g., "crime novel", "fitness tracker")
+            - and how well this chunk contributed to predicting the correct user feedback (review or rating).
+        - success_score (str, required): A score from "0.0" to "1.0" (in 0.1 increments) representing the chunk’s contribution to prediction success.
+            Higher scores indicate greater usefulness; lower scores indicate misleading or irrelevant influence.
 
-    Examples:
-        Single interaction update:
-        [{"chunk_id": "interaction_123", "content": "Updated review text"}]
-        
-        Multiple interaction updates:
-        [
-            {"chunk_id": "interaction_123", "content": "Great movie!"},
-            {"chunk_id": "interaction_456", "content": "Not bad"}
-        ]
+Examples:
+
+    # Feedback for a single retrieved chunk (from a prediction on a crime novel)
+    [
+        {
+            "chunk_id": "retrieved_chunk_001",
+            "note": "This chunk reflected typical user reactions to crime novels and matched the tone of the target review.",
+            "success_score": "0.9"
+        }
+    ]
+
+    # Multiple retrieved chunks evaluated after a prediction task on a romantic novel
+    [
+        {
+            "chunk_id": "retrieved_chunk_002",
+            "note": "This chunk emphasized emotional themes common in romantic fiction, aligning well with the predicted review.",
+            "success_score": "0.8"
+        },
+        {
+            "chunk_id": "retrieved_chunk_003",
+            "note": "This chunk was about detective stories and confused the sentiment prediction for the romance novel.",
+            "success_score": "0.2"
+        }
+    ]
+
 
     Returns:
         bool: True if all interaction updates successful, False otherwise.
@@ -221,21 +240,29 @@ def update_interaction_tool(interactions: List[Dict]) -> bool:
         
         for interaction in interactions:
             chunk_id = interaction.get('chunk_id')
-            content = interaction.get('content')
+            note = interaction.get('note')
+            success_score = interaction.get('success_score')
+
             
-            if not chunk_id or not content:
+            if not chunk_id or not note:
                 print(f"Skipping interaction: chunk_id and content are required. Got: {interaction}")
                 continue
-            
-            # Prepare metadata for this interaction
-            metadata = {
-                "updated": 'True'
-            }
-            
+                        
             existing_interaction = memory.get_chunk_by_id(chunk_id=chunk_id)
             if existing_interaction:
                 # If the interaction exists, we can use its metadata
                 existing_metadata = {k: v for k, v in existing_interaction.items() if k != 'content'}
+                if existing_metadata['feed_back']:
+                    existing_metadata['feed_back'].append({'note': note, 'success_score': success_score})
+                    metadata = {
+                        "updated": 'True'
+                    }
+                else:
+                    metadata = {
+                        "updated": 'True',
+                        "feed_back": [{'note': note, 'success_score': success_score}]
+                    }
+
                 metadata.update(existing_metadata)
             else:
                 print(f"Interaction with chunk_id {chunk_id} not found. Skipping update.")
@@ -244,7 +271,7 @@ def update_interaction_tool(interactions: List[Dict]) -> bool:
             # Prepare update object
             update_obj = {
                 "chunk_id": chunk_id,
-                "text": content,
+                "text": existing_interaction['content'],
                 "metadata": metadata,
                 "chunk_type": "interaction"
             }

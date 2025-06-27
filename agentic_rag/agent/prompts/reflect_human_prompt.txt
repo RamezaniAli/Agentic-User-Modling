@@ -7,7 +7,6 @@ User ID: {user_id}
 User Information:
 {user_information}
 
-Item ID: {item_id}
 Item Description: "{item_information}"
 
 ---
@@ -22,9 +21,6 @@ Predicted Feedback:
 
 Current Persona:
 {persona}
-
-Retrieved Interactions:
-{retrieved_interactions}
 
 ---
 

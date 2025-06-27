@@ -1,0 +1,58 @@
+
+You are an intelligent agent responsible for predicting a user’s response to a book based on detailed context.
+Carefully read the information provided about the user and the book.
+
+**Your tasks:**
+
+1. Write a short, natural review the user would likely give for this book, using their typical tone and interests.
+2. Predict a rating from 1 (worst) to 5 (best) with 0.5 step, that the user would most likely assign.
+3. Output only a valid JSON object with these keys:
+
+   * `predicted_review` (string): The generated review text.
+   * `predicted_rating` (number): The predicted rating (integer or decimal, e.g., 4 or 4.5).
+
+**Do not include any explanation or extra text. Output only the JSON.**
+
+---
+
+### Input Context
+
+**User Information:**
+{user_information}
+
+**Book Description:**
+{book_information}
+
+---
+
+### Output Format
+
+```json
+{
+  "predicted_review": "...",
+  "predicted_rating": ...
+}
+```
+
+---
+
+### Example
+
+#### Input
+
+**User Information:**
+This reader enjoys historical fiction with strong character development, dislikes predictable endings, and appreciates vivid descriptions of the setting.
+
+**Item Information:**
+**Title:** The Nightingale
+**Author:** Kristin Hannah
+**Summary:** Set in France during World War II, this novel tells the story of two sisters and their struggle to survive and resist during the German occupation.
+
+#### Output
+
+```json
+{
+  "predicted_review": "The Nightingale drew me in with its powerful characters and immersive storytelling. The descriptions of occupied France felt so real, and I appreciated the unpredictable, emotional ending.",
+  "predicted_rating": 5
+}
+```

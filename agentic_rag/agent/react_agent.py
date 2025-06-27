@@ -1,13 +1,10 @@
-
-
-
 from __future__ import annotations
 import json
 import uuid
 import os
 from IPython.display import Image, display
 
-from typing_extensions import TypedDict, Annotated, Literal, Optional
+from typing_extensions import TypedDict, Annotated, Literal, Optional, List, Dict
 from langchain_openai import ChatOpenAI
 from langgraph.graph.message import add_messages
 from langchain_core.messages import HumanMessage, SystemMessage, AnyMessage
@@ -15,7 +12,7 @@ from langgraph.graph import StateGraph, START, END
 from langgraph.prebuilt import ToolNode
 from langchain_core.tools import tool
 
-from config import BASE_URL, EMBEDDING_MODEL_NAME, LLM_MODEL_NAME, MODEL_TEMP
+from agentic_rag.config import BASE_URL, EMBEDDING_MODEL_NAME, LLM_MODEL_NAME, MODEL_TEMP, TOP_K_PERSONA, TOP_K_INTERACTION
 from agent.memory_manager import MemoryManager
 from agent.utils import safe_json_parse
 import re
@@ -27,7 +24,7 @@ import re
 class ReactState(TypedDict):
     ### always present on entry:
     user_id: str
-    user_information: dict 
+    user_information: str 
     ### Persona node:
     persona: Optional[str]
     ### ReAct Agent:
@@ -35,7 +32,7 @@ class ReactState(TypedDict):
     ### finish react node:
     predicted_rating: Optional[float]
     predicted_review: Optional[str]
-    retrieved_interactions: Optional[dict]  # interactions retrieved by ReAct agent
+    retrieved_chunk_ids: Optional[dict]  # interactions retrieved by ReAct agent
 
 
 # --------------------------------------------------------------------------- #
@@ -45,8 +42,8 @@ class ReactState(TypedDict):
 memory = MemoryManager(embedding_model=EMBEDDING_MODEL_NAME)
 
 # Add this import and initialization
-from agent.tools import set_memory
-set_memory(memory)  # Initialize the global memory in tools
+# from agent.tools import set_memory
+# set_memory(memory)  # Initialize the global memory in tools
 
 llm = ChatOpenAI(
     model=LLM_MODEL_NAME,
@@ -55,7 +52,74 @@ llm = ChatOpenAI(
 )
 
 # --------------------------------------------------------------------------- #
-# 3 ---- Nodes
+# 3 ---- tools
+# --------------------------------------------------------------------------- #
+
+@tool
+def get_interactions_tool(user_id: str, query: str) -> List[Dict]:
+    """
+    Retrieve the user's past interactions that are semantically relevant to the given query (typically the item description).
+
+    Args:
+        user_id (str): The unique identifier of the user.
+        query (str): A description of the target item (used for similarity search).
+
+    Returns:
+        List[dict]: A list of dictionaries, each representing an interaction with the following keys:
+            - content (str): Text content of the interaction, including title, rating, and snippet
+            - chunk_type (str): Type of the chunk, e.g., "interaction"
+            - user_id (str): ID of the user who interacted
+            - item_id (str): ID of the item involved in the interaction
+            - chunk_id (str): Unique identifier for the chunk
+    """
+    if memory is None:
+        raise RuntimeError("Memory not initialized. Call set_memory() first.")
+    
+    return memory.get_interactions(user_id=user_id, query=query, k=TOP_K_INTERACTION)
+
+@tool
+def get_similar_users_persona_tool(persona_content: str) -> List[Dict]:
+    """
+    Retrieve personas of users who are semantically similar to the given persona content.
+
+    Args:
+        persona_content (str): A natural language description of the current user's persona.
+
+    Returns:
+        List[dict]: A list of similar user personas with the following keys:
+            - user_id (str): ID of the similar user
+            - persona (str): Natural language description of that user's persona
+    """
+    if memory is None:
+        raise RuntimeError("Memory not initialized. Call set_memory() first.")
+    
+    try:
+        similar_users = memory.vstore.similarity_search(
+            query=persona_content,
+            k=TOP_K_PERSONA,
+            filter={"chunk_type": {"$eq": "persona"}},
+        )
+        return [
+            {
+                "user_id": p.metadata.get("user_id", ""),
+                "persona": p.page_content,
+            }
+            for p in similar_users
+        ]
+    except Exception as e:
+        print(f"Error retrieving similar personas: {e}")
+        return []
+
+react_tools = [
+    get_interactions_tool,
+    get_similar_users_persona_tool,
+]
+
+react_llm_with_tools = llm.bind_tools(react_tools)
+react_tools_node = ToolNode(tools=react_tools, messages_key="react_messages")
+
+# --------------------------------------------------------------------------- #
+# 4 ---- Nodes
 # --------------------------------------------------------------------------- #
 
 def persona_node(state: ReactState) -> ReactState:
@@ -87,8 +151,10 @@ def persona_node(state: ReactState) -> ReactState:
         # Save new persona using the tool
         success = memory.add_chunk(
             text=persona_text,
-            metadata={"user_id": user_id},
+            metadata={"user_id": user_id, "updated": "False"},
             chunk_type="persona",
+            chunk_id=f"{user_id}_{00}"
+
         )
         lookup_msg = SystemMessage(
             content=f"User was not in database, persona created from user information.\nPersona: {persona_text}"
@@ -133,7 +199,7 @@ def finish_react_node(state: ReactState) -> ReactState:
         raise ValueError("Last react message has no content.")
 
     # Try to parse the content using our robust parser
-    required_keys = ["rating", "review", "retrieved_interactions"]
+    required_keys = ["rating", "review", "retrieved_chunk_ids"]
     result = safe_json_parse(content, required_keys)
     
     if result is None:
@@ -146,7 +212,7 @@ def finish_react_node(state: ReactState) -> ReactState:
         
         predicted_rating = float(rating_match.group(1)) if rating_match else 2.5
         predicted_review = review_match.group(1) if review_match else "Could not extract review from response."
-        retrieved_interactions = {"self": [], "peer": []}
+        retrieved_chunk_ids = {"self": [], "peer": []}
         
         print(f"Fallback extraction: rating={predicted_rating}, review='{predicted_review}'")
     else:
@@ -155,7 +221,7 @@ def finish_react_node(state: ReactState) -> ReactState:
             # Extract and validate fields
             predicted_rating = float(result.get("rating", 2.5))
             predicted_review = str(result.get("review", "Unable to generate review."))
-            retrieved_interactions = result.get("retrieved_interactions", {"self": [], "peer": []})
+            retrieved_chunk_ids = result.get("retrieved_chunk_ids", {"self": [], "peer": []})
 
             # Validate rating range
             if not (0.0 <= predicted_rating <= 5.0):
@@ -163,12 +229,12 @@ def finish_react_node(state: ReactState) -> ReactState:
                 predicted_rating = max(0.0, min(5.0, predicted_rating))
 
             # Ensure retrieved_interactions has the right structure
-            if not isinstance(retrieved_interactions, dict):
-                retrieved_interactions = {"self": [], "peer": []}
-            if "self" not in retrieved_interactions:
-                retrieved_interactions["self"] = []
-            if "peer" not in retrieved_interactions:
-                retrieved_interactions["peer"] = []
+            if not isinstance(retrieved_chunk_ids, dict):
+                retrieved_chunk_ids = {"self": [], "peer": []}
+            if "self" not in retrieved_chunk_ids:
+                retrieved_chunk_ids["self"] = []
+            if "peer" not in retrieved_chunk_ids:
+                retrieved_chunk_ids["peer"] = []
 
             print(f"Successfully extracted: rating={predicted_rating}, review_length={len(predicted_review)}")
 
@@ -176,31 +242,18 @@ def finish_react_node(state: ReactState) -> ReactState:
             print(f"Error processing parsed result: {e}")
             predicted_rating = 2.5
             predicted_review = "Error in processing parsed result."
-            retrieved_interactions = {"self": [], "peer": []}
+            retrieved_chunk_ids = {"self": [], "peer": []}
 
     return {
         "persona": state.get('persona', 'Unknown user'),
         "predicted_rating": predicted_rating,
         "predicted_review": predicted_review,
-        "retrieved_interactions": retrieved_interactions,
+        "retrieved_chunk_ids": retrieved_chunk_ids,
     }
 
-# --------------------------------------------------------------------------- #
-# 3 ---- tools
-# --------------------------------------------------------------------------- #
-
-from agent.tools import *
-
-react_tools = [
-    get_interactions_tool,
-    get_similar_users_persona_tool,
-]
-
-react_llm_with_tools = llm.bind_tools(react_tools)
-react_tools_node = ToolNode(tools=react_tools, messages_key="react_messages")
 
 # --------------------------------------------------------------------------- #
-# 3 ---- Conditional Edges for Agents to Tools
+# 5 ---- Conditional Edges for Agents to Tools
 # --------------------------------------------------------------------------- #
 
 def react_tools_condition(state: ReactState) -> Literal["react_tools", "finish_react_node"]:

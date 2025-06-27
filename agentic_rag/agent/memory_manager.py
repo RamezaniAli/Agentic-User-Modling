@@ -297,13 +297,15 @@ def memory_initalize(input_json, chunk_type):
     if chunk_type == 'persona':
         memory.add_chunk(text= input_json['user_information'],
                          chunk_type = chunk_type,
+                         chunk_id = f"{input_json['user_id']}_00",
                          metadata = {'user_id':input_json['user_id'],
                                      'updated':"False"})
         
     elif chunk_type == 'interaction':
-        memory.add_chunk(text= input_json['true_review'],
+        memory.add_chunk(text= input_json['item_information'],
                          chunk_type = chunk_type,
+                         chunk_id = input_json['int_id'],
                          metadata = {'user_id':input_json['user_id'],
-                                     'item_id':input_json['item_id'],
-                                     'rating':input_json['true_rating'],
+                                     'true_rating':input_json['true_rating'],
+                                     'true_review':input_json['true_review'],
                                      'updated':"False"})
