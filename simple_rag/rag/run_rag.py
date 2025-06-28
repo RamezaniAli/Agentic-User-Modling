@@ -1,12 +1,15 @@
 import json
 import os
+import re
+
 from typing import List, Dict, Any
 from tqdm import tqdm
-from memory_manager import MemoryManager, set_memory
 from langchain_openai import ChatOpenAI
 from langchain_core.messages import SystemMessage, HumanMessage
-from config import BASE_URL, LLM_MODEL_NAME, MODEL_TEMP, TOP_K_INTERACTION
-import re
+
+from simple_rag.rag_config import BASE_URL, LLM_MODEL_NAME, MODEL_TEMP, TOP_K_INTERACTION
+from memory.memory_manager import MemoryManager, set_memory
+from utils.utils import safe_json_parse
 
 
 def load_jsonl(file_path: str) -> List[Dict[Any, Any]]:
@@ -34,68 +37,6 @@ def create_batches(data: List[Dict[Any, Any]], batch_size: int) -> List[List[Dic
         batch = data[i:i + batch_size]
         batches.append(batch)
     return batches
-
-
-def safe_json_parse(content: str, required_keys: List[str] = None) -> Dict[Any, Any]:
-    """
-    Safely parse JSON from LLM response content with multiple fallback strategies.
-    
-    Args:
-        content: Raw content from LLM response
-        required_keys: List of required keys to validate
-    
-    Returns:
-        Parsed dictionary or None if parsing fails
-    """
-    if not content or not isinstance(content, str):
-        return None
-    
-    # Strategy 1: Try direct JSON parsing
-    try:
-        result = json.loads(content.strip())
-        if isinstance(result, dict):
-            if required_keys:
-                if all(key in result for key in required_keys):
-                    return result
-            else:
-                return result
-    except (json.JSONDecodeError, TypeError):
-        pass
-    
-    # Strategy 2: Extract JSON block from code fences
-    json_pattern = r'```(?:json)?\s*(\{.*?\})\s*```'
-    matches = re.findall(json_pattern, content, re.DOTALL | re.IGNORECASE)
-    
-    for match in matches:
-        try:
-            result = json.loads(match.strip())
-            if isinstance(result, dict):
-                if required_keys:
-                    if all(key in result for key in required_keys):
-                        return result
-                else:
-                    return result
-        except (json.JSONDecodeError, TypeError):
-            continue
-    
-    # Strategy 3: Find JSON-like structure in text
-    brace_pattern = r'\{[^{}]*(?:\{[^{}]*\}[^{}]*)*\}'
-    matches = re.findall(brace_pattern, content, re.DOTALL)
-    
-    for match in matches:
-        try:
-            result = json.loads(match.strip())
-            if isinstance(result, dict):
-                if required_keys:
-                    if all(key in result for key in required_keys):
-                        return result
-                else:
-                    return result
-        except (json.JSONDecodeError, TypeError):
-            continue
-    
-    return None
-
 
 def initialize_llm_client() -> ChatOpenAI:
     """Initialize the LLM client."""
@@ -418,26 +359,3 @@ def run_single_simple_interaction(input_json: dict, memory_instance: MemoryManag
     memory_results = add_interactions_to_memory([prediction_result], memory_instance)
     
     return memory_results[0]
-
-
-# Example usage
-if __name__ == "__main__":
-    # Initialize memory manager
-    memory_manager = MemoryManager()
-    
-    # Initialize LLM client
-    llm_client = initialize_llm_client()
-    
-    # Example of how to use the simple baseline
-    input_file = "input_interactions.jsonl"
-    output_file = "simple_baseline_results.jsonl"
-    batch_size = 5
-    
-    run_simple_baseline(
-        input_jsonl_path=input_file,
-        output_jsonl_path=output_file,
-        memory_instance=memory_manager,
-        llm_client=llm_client,
-        batch_size=batch_size,
-        debug=True
-    )

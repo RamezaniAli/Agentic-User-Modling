@@ -4,7 +4,6 @@ from typing import List, Optional, Dict
 from langchain_chroma  import Chroma
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from langchain_openai import OpenAIEmbeddings
-from config import CHROMA_DB_PATH, TOP_K_PERSONA, TOP_K_INTERACTION, BASE_URL, EMBEDDING_MODEL_NAME
 from langchain.schema import Document
 import os
 import chromadb
@@ -19,9 +18,9 @@ class MemoryManager:
 
     def __init__(
         self,
-        db_path: str = CHROMA_DB_PATH,
-        embedding_model: str = EMBEDDING_MODEL_NAME,
-        base_url: str = BASE_URL,
+        db_path: str,
+        embedding_model: str,
+        base_url: str,
         collection_name: str = "memory_collection"
     ):
         # Initialize embeddings client; relies on GOOGLE_API_KEY in environment
@@ -170,7 +169,7 @@ class MemoryManager:
         self,
         user_id: Optional[str] = None,
         fallback_persona: Optional[str] = None,
-        k: int = TOP_K_PERSONA
+        k: int = 2
     ) -> Optional[Dict]:
         """
         Retrieve a persona chunk.
@@ -239,7 +238,7 @@ class MemoryManager:
         self,
         user_id: str,
         query: str,
-        k: int = TOP_K_INTERACTION
+        k: int = 3
     ) -> List[Dict]:
         """
         Retrieve top-k interaction chunks for a user matching the query.

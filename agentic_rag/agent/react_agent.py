@@ -1,7 +1,7 @@
 from __future__ import annotations
-import json
-import uuid
 import os
+import re
+
 from IPython.display import Image, display
 
 from typing_extensions import TypedDict, Annotated, Literal, Optional, List, Dict
@@ -12,10 +12,9 @@ from langgraph.graph import StateGraph, START, END
 from langgraph.prebuilt import ToolNode
 from langchain_core.tools import tool
 
-from agentic_rag.config import BASE_URL, EMBEDDING_MODEL_NAME, LLM_MODEL_NAME, MODEL_TEMP, TOP_K_PERSONA, TOP_K_INTERACTION
-from agent.memory_manager import MemoryManager
-from agent.utils import safe_json_parse
-import re
+from agentic_rag.config import BASE_URL, EMBEDDING_MODEL_NAME, LLM_MODEL_NAME, MODEL_TEMP, TOP_K_PERSONA, TOP_K_INTERACTION, CHROMA_DB_PATH
+from memory.memory_manager import MemoryManager
+from utils.utils import safe_json_parse
 
 # --------------------------------------------------------------------------- #
 # 1 ---- State definition
@@ -39,11 +38,7 @@ class ReactState(TypedDict):
 # 2 ---- Shared resources
 # --------------------------------------------------------------------------- #
 
-memory = MemoryManager(embedding_model=EMBEDDING_MODEL_NAME)
-
-# Add this import and initialization
-# from agent.tools import set_memory
-# set_memory(memory)  # Initialize the global memory in tools
+memory = MemoryManager(db_path=CHROMA_DB_PATH, embedding_model=EMBEDDING_MODEL_NAME, base_url=BASE_URL)
 
 llm = ChatOpenAI(
     model=LLM_MODEL_NAME,
