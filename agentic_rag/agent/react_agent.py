@@ -1,6 +1,7 @@
 from __future__ import annotations
 import os
 import re
+import time
 
 from IPython.display import Image, display
 
@@ -173,6 +174,7 @@ def react_node(state: ReactState) -> ReactState:
     sys_msg = SystemMessage(content=sys_prompt)
 
     react_messages = [sys_msg] + state["react_messages"]
+    time.sleep(3)
     react_result = react_llm_with_tools.invoke(react_messages)
 
     return {"react_messages": [react_result]}

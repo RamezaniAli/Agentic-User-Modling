@@ -1,6 +1,7 @@
 from __future__ import annotations
 import json
 import os
+import time
 from IPython.display import Image, display
 
 from typing_extensions import TypedDict, Annotated, Literal, Optional, List, Dict
@@ -275,6 +276,7 @@ def reflect_node(state: ReflectState) -> ReflectState:
     sys_msg = SystemMessage(content=sys_prompt)
     
     reflect_messages = [sys_msg] + state["reflect_messages"]
+    time.sleep(3)
     reflect_result = reflect_llm_with_tools.invoke(reflect_messages)
 
     return {"reflect_messages": [reflect_result]}

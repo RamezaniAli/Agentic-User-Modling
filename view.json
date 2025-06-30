@@ -1,36 +1,39 @@
 {
-    "user_id": "u_01",
-    "user_information": "This reader deeply connects with protagonists who demonstrate innocence and heart, particularly in historical settings, but dislikes snobby or superior characters. They value books that offer memorable insights or morals, especially those related to maturity and trust. While historical fiction is a clear favorite, the reader appreciates age-appropriate themes and reasonable character choices, and will downgrade stories that lose their narrative grip midway. They are also quietly attentive to language, picking up new vocabulary along the way.",
-    "int_id": "u_01_55",
-    "item_information": "**Book Title**: Baby Be Mine\n        **Genre & Themes**: true-crime, non-fiction, crime, nonfiction, request, written-by-colleagues-and-friends, true-crime-kindle\n        **Average Reader Rating**: 3.85\n        **Story Overview**: THE MIRACLE OF LIFE\nWhen Lisa Montgomery presented her husband Kevin with their new-born baby girl, he was ecstatic. Naming the child Abigail, the couple brought her to their local pastor. Miles away, police were investigating the brutal murder of a pregnant woman...\nTHE HORROR OF MURDER\nTwenty-three year old Bobbie Jo Stinnett was found by her mother, lying in a pool of blood, looking as if her stomach \"had exploded.\" Investigators soon determined: Someone had strangled Bobbie Jo to...\n        **Written by**: Diane Fanning\n        **First Published**: 2006",
-    "true_rating": 5,
-    "true_review": "This is one of the most interesting true crime books I have ever read. It also includes justice for a shocking murder. It's the type you hardly hear about anymore. I think this one is my favorite book.",
-    "predicted_rating": 2.5,
-    "predicted_review": "Baby Be Mine was a gripping read, but I found it difficult to connect with the characters, especially given the dark subject matter. While the insights into the crime were compelling, I missed the innocence and heart that I usually seek in historical fiction. The narrative felt heavy and sometimes lost its grip, which made it hard for me to fully engage. It\u2019s a well-written account, but it didn\u2019t resonate with my preferences for character-driven stories with moral depth.",
+    "user_id": "u_12",
+    "user_information": "This reader appreciates well-written stories, especially those that blend humor with poignant themes; they are not afraid of shedding tears for a book. They are drawn to narratives featuring cultural experiences and historical backdrops, but also enjoy lighthearted, picaresque adventures reminiscent of Forrest Gump. Audiobooks with excellent narration earn extra points from them. Overall, they seek stories that are both thought-provoking and thoroughly enjoyable, and aren't shy about awarding a top rating when a book delivers.",
+    "int_id": "u_12_51",
+    "item_information": "**Book Title**: The Sugar Queen\n        **Genre & Themes**: fiction, magical-realism, favorites, chick-lit, romance, fantasy, contemporary\n        **Average Reader Rating**: 3.98\n        **Story Overview**: In this irresistible novel, Sarah Addison Allen, author of the New York Times bestselling debut, Garden Spells, tells the tale of a young woman whose family secrets--and secret passions--are about to change her life forever.\nJosey Cirrini is sure of three things: winter is her favorite season, she's a sorry excuse for a Southern belle, and sweets are best eaten in the privacy of her closet. For while Josey has settled into an uneventful life in her mother's house, her one consolation is the...\n        **Written by**: Sarah Addison Allen\n        **First Published**: 2008",
+    "true_rating": 2,
+    "true_review": "Light, fluffy and, to be honest, a little bit weird.",
+    "predicted_rating": 4.5,
+    "predicted_review": "The Sugar Queen was a delightful blend of humor and heartfelt moments that kept me engaged from start to finish. I loved the magical realism woven into Josey's story, and the Southern charm added a lovely backdrop. The characters felt real and relatable, and I found myself laughing and tearing up in equal measure. The narration was top-notch, making it an even more enjoyable experience. A sweet treat of a book that I wouldn't hesitate to recommend!",
     "retrieved_interactions": [
         {
-            "content": "**Book Title**: Pretty Little Killers: The Truth Behind the Savage Murder of Skylar Neese\n        **Genre & Themes**: true-crime, non-fiction, nonfiction, crime, ebook, mystery, audiobook\n        **Average Reader Rating**: 3.66\n        **Story Overview**: In Pretty Little Killers, journalist Daleen Berry and investigator Geoffrey Fuller expand upon their New York Timesbestselling ebook The Savage Murder of Skylar Neeseto give you even more information behind one of the most horrific and shocking murders of our time. Including over 100 pages of new material, Pretty Little Killersshares the latest theories and answers the questions that have left many people baffled.\nAfter killer Shelia Eddy pled guilty to first degree murder and was sentenced to...\n        **Written by**: Daleen Berry, Geoffrey C. Fuller\n        **First Published**: 2014",
+            "content": "**Book Title**: The Girl Who Was Saturday Night\n        **Genre & Themes**: fiction, canadian, favorites, canada, contemporary, book-club, canadiana\n        **Average Reader Rating**: 3.8\n        **Story Overview**: Heather O'Neill charmed readers in the hundreds of thousands with her sleeper hit, Lullabies for Little Criminals, which documented with a rare and elusive magic the life of a young dreamer on the streets of Montreal. Now, in The Girl Who Was Saturday Night, she returns to the grubby, enchanted city with a light and profound tale of the vice of fame and the ties of family.\nNineteen years old, free of prospects, and inescapably famous, the twins Nicholas and Nouschka Tremblay are trying to...\n        **Written by**: Heather O'Neill\n        **First Published**: 2014",
+            "updated": "False",
+            "chunk_id": "u_12_22",
+            "true_rating": 3,
             "chunk_type": "interaction",
-            "true_review": "This true crime book has been my favorite since I first got it. It really explains why Rachel and Sheila stabbed Skylar and how justice was served in the end. In my opinion, the main reason for Skylar's premeditated murder was to keep her from revealing their secret relationship.",
-            "chunk_id": "u_01_52",
-            "true_rating": 5,
-            "user_id": "u_01"
+            "true_review": "A strange little story containing oddball, downtrodden sibling characters, who were raised in a dysfunctional show biz family, virtually unknown to anyone outside their home province. They are now \"adults\", but their behaviour doesn't reflect it. The entire family seems to be perched on the precipice of a mental breakdown of epic proportion. Interwoven with intense dissatisfaction with their lives, political reference that I fear only a Canadian would understand, and bizarre appearances by neighbourhood cats that I can't quite figure out, the writing is gritty and edgy but contains a level of metaphor that goes beyond my ability or desire to figure out.",
+            "user_id": "u_12"
         },
         {
-            "content": "**Book Title**: Guarding the Secrets: Palestinian Terrorism and a Father's Murder of His Too-American Daughter\n        **Genre & Themes**: non-fiction, low-brow, forensics-criminology, did-not-finish, murder-case, candidates-for-my-book-club-picks, last\n        **Average Reader Rating**: 3.33\n        **Story Overview**: This horrifying true-crime story is an unsettling portrait of a culture where \"honor killing\" is understood--and a warning of just how serious a threat terrorism is in the United States. Photos.\n        **Written by**: Ellen Harris\n        **First Published**: 1994",
-            "user_id": "u_01",
-            "true_rating": 5,
+            "content": "**Book Title**: The Night Circus\n        **Genre & Themes**: fantasy, favorites, fiction, \uff46\uff41\uff56\uff4f\uff52\uff49\uff54\uff45\uff53, book-club, romance, historical-fiction\n        **Average Reader Rating**: 4.03\n        **Story Overview**: The circus arrives without warning. No announcements precede it. It is simply there, when yesterday it was not. Within the black-and-white striped canvas tents is an utterly unique experience full of breathtaking amazements. It is called Le Cirque des Reves, and it is only open at night.\nBut behind the scenes, a fierce competition is underway - a duel between two young magicians, Celia and Marco, who have been trained since childhood expressly for this purpose by their mercurial instructors....\n        **Written by**: Erin Morgenstern\n        **First Published**: 2012",
+            "true_rating": 3,
+            "updated": "False",
             "chunk_type": "interaction",
-            "true_review": "Palestina Isa's honor killing is a very interesting story. I'm glad she got justice.",
-            "chunk_id": "u_01_53"
+            "true_review": "Fantasy or magical fiction is not a genre I usually read. Honestly, I bought the book based wholly in the cover art and the way it felt in my hand. But even so, I did enjoy the writing and some of the characters. I do, however, think that I have likely fulfilled my fantasy requirements for the next year or two...",
+            "chunk_id": "u_12_15",
+            "user_id": "u_12"
         },
         {
-            "content": "**Book Title**: Baby Blues 07: I Saw Elvis In My Ultrasound\n        **Genre & Themes**: humor, comic, 2004, comedy, humour, fiction, cartoons\n        **Average Reader Rating**: 4.25\n        **Story Overview**: No description available\n        **Written by**: Rick Kirkman, Jerry Scott\n        **First Published**: 1996",
-            "true_rating": 1,
-            "true_review": "From the beginning to the end, I realized the book wasn't for me.",
-            "user_id": "u_01",
+            "content": "**Book Title**: My Name Is Memory\n        **Genre & Themes**: fantasy, historical-fiction, chick-lit, paranormal, book-club, adult-fiction, reincarnation\n        **Average Reader Rating**: 3.7\n        **Story Overview**: From the New York Times-bestselling author of The Sisterhood of the Traveling Pantsand The Last Summer (of You and Me)comes an imaginative, inspired, magical book-a love story that lasts more than a lifetime. \nDaniel has spent centuries falling in love with the same girl. Life after life, crossing continents and dynasties, he and Sophia (despite her changing name and form) have been drawn together-and he remembers it all. Daniel has \"the memory\", the ability to recall past lives and recognize...\n        **Written by**: Ann Brashares\n        **First Published**: 2010",
+            "true_rating": 3,
             "chunk_type": "interaction",
-            "chunk_id": "u_01_47"
+            "user_id": "u_12",
+            "true_review": "I think if I had tried to read this book in print, it might have left me very confused. As it is, the audiobook reduced some of the back and forth in time confusion, by implementing separate narrators in the different time sequences.The premise of the story, two lovers travelling in time, being reborn and passing each other, sometimes connecting and sometimes not, was a tantalizing one. The idea of repeated reincarnation and reconnecting with people we have loved before, in order to right the wrongs we have done one another, is certainly very compelling. Overall, a pleasing listen even though, by the end, I just wanted them to \"get on with it.\" Good writing, but the story became a little weighted down and monotonous after passing through 1500 years from start to finish.",
+            "chunk_id": "u_12_48",
+            "updated": "False"
         }
     ],
     "memory_added": true

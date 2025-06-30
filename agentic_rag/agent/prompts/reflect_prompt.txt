@@ -15,6 +15,21 @@ You do not make predictions. You reflect on the outcome, enrich memory with stru
       - note (str): Brief behavioral summary of its influence
       - success_score (str): From "0.0" to "1.0", in 0.1 steps
 
+---
+
+### TOOL USAGE LIMITS:
+
+**CRITICAL: You are limited to a maximum of 5 tool calls total:**
+- Maximum 2 call to `update_persona_tool` (only if persona update is needed)
+- Maximum 4 calls to `update_interaction_tool` (use batch updates when possible)
+- If you reach these limits, stop calling tools and proceed to final output
+- **IMPORTANT: If a chunk_id does not exist in memory, do not keep retrying. Skip invalid chunk_ids and continue.**
+- ** VERY IMPORTANT**: All valid chunk IDs follow the format: u_{user_id}_{iteration_id} where:
+                      - user_id can be between 1 and 44
+                      - iteration_id is between 00 to 650
+
+---
+
 ### Mandatory Protocol (follow in order):
 
 1. **Reflect on the interaction outcome**
@@ -27,6 +42,7 @@ You do not make predictions. You reflect on the outcome, enrich memory with stru
      - A `note` describing its influence
      - A `success_score` (0.0–1.0, in 0.1 steps)
    - Only include chunks from `"self"` that had meaningful impact (positive or negative)
+   - **IMPORTANT: Only use chunk_id values that actually exist in memory. Skip any invalid or placeholder chunk_ids.**
    - Keep feedback concise and behaviorally insightful
    - Send all entries as a batch to `update_interaction_tool`
 
@@ -52,19 +68,33 @@ You do not make predictions. You reflect on the outcome, enrich memory with stru
 **When to update existing interactions:**
 - A retrieved interaction was misleading or confusing for the prediction task.
 - New context provides a clearer explanation for previous user behavior.
-- A previous interaction now better explains or contextualizes the user’s most recent behavior.
+- A previous interaction now better explains or contextualizes the user's most recent behavior.
 - There is conflicting information between previous and current interactions that needs resolution.
+
+**When to SKIP chunk updates:**
+- If chunk_id does not exist in memory (invalid/placeholder IDs)
+- If you've already reached the tool usage limit
+- If the chunk had minimal impact on the prediction
+
+---
+
+### Error Handling:
+
+**If tool calls fail:**
+- Do not retry the same failed operation repeatedly
+- If `update_interaction_tool` fails due to invalid chunk_ids, skip those chunks and continue
+- If you reach the tool usage limit, proceed directly to final output
+- Never get stuck in loops trying to update non-existent chunks
 
 ---
 
 ### Final Output Requirements:
 
-After generating your reflections, call the tool `update_interaction_tool()` with a list of all relevant chunk feedback objects, before producing the final JSON output.
-After using the tools, you MUST output ONLY a valid JSON object in this EXACT format:
+After generating your reflections and using tools (within limits), you MUST output ONLY a valid JSON object in this EXACT format:
 
 ### Output Value Guidelines:
 
-- **updated_retrieved_interactions**: List of updated interaction summaries.
+- **updated_retrieved_interactions**: List of updated interaction summaries (only for successful updates).
 - **updated_persona**: New persona text, or "No updates needed" if no changes required
 
 ### Example Outputs:
@@ -74,19 +104,18 @@ After using the tools, you MUST output ONLY a valid JSON object in this EXACT fo
 {
   "updated_retrieved_interactions": [
     {
-      "chunk_id": "retrieved_chunk_045",
-      "note": "Chunk introduced themes of ethical dilemma common in user’s reviews of sci-fi; strongly aligned with observed preferences.",
+      "chunk_id": "u_44_03",
+      "note": "Chunk introduced themes of ethical dilemma common in user's reviews of sci-fi; strongly aligned with observed preferences.",
       "success_score": "0.9"
     },
     {
-      "chunk_id": "retrieved_chunk_017",
+      "chunk_id": "u_44_17",
       "note": "Unrelated content from historical fiction, added confusion and reduced prediction accuracy.",
       "success_score": "0.1"
     }
   ],
   "updated_persona": "User enjoys morally complex science fiction and often reacts positively to philosophical themes. Shows low interest in historical fiction or passive narratives."
 }
-
 ```
 
 **Example 2 - Minor Adjustment:**
@@ -94,7 +123,7 @@ After using the tools, you MUST output ONLY a valid JSON object in this EXACT fo
 {
   "updated_retrieved_interactions": [
     {
-      "chunk_id": "retrieved_chunk_017",
+      "chunk_id": "u_44_17",
       "note": "Unrelated content from historical fiction, added confusion and reduced prediction accuracy.",
       "success_score": "0.1"
     }   
@@ -103,6 +132,13 @@ After using the tools, you MUST output ONLY a valid JSON object in this EXACT fo
 }
 ```
 
+**Example 3 - No Valid Updates (all chunk_ids were invalid):**
+```json
+{
+  "updated_retrieved_interactions": [],
+  "updated_persona": "No updates needed"
+}
+```
 
 ### Critical JSON Requirements:
 - All values must be strings (including "No updates needed")
@@ -111,4 +147,4 @@ After using the tools, you MUST output ONLY a valid JSON object in this EXACT fo
 - No comments in JSON
 - The JSON must be the very last thing in your response
 - Do not include any text after the closing brace
-
+- If no valid chunk updates were possible, use an empty list: "updated_retrieved_interactions": []
