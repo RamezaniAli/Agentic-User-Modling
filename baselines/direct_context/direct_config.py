@@ -16,15 +16,10 @@ EVAL_SCORE_THRESHOLD = 0.7
 EMBEDDING_MODEL_NAME = "text-embedding-3-small"
 
 # LLM_MODEL_NAME = "gpt-4.1-mini"
-LLM_MODEL_NAME = "gpt-4o-mini"
-# LLM_MODEL_NAME = "qwen/qwen3-8b-04-28:free"
-
-
+LLM_MODEL_NAME = "gemini-2.0-flash"
 
 
 BASE_URL = "https://api.avalai.ir/v1"
-# BASE_URL = "https://openrouter.ai/api/v1"
-
 REQUEST_TIMEOUT = 30
 MODEL_TEMP = 0.3
 

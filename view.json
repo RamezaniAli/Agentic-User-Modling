@@ -1,40 +1,12 @@
 {
-    "user_id": "u_12",
-    "user_information": "This reader appreciates well-written stories, especially those that blend humor with poignant themes; they are not afraid of shedding tears for a book. They are drawn to narratives featuring cultural experiences and historical backdrops, but also enjoy lighthearted, picaresque adventures reminiscent of Forrest Gump. Audiobooks with excellent narration earn extra points from them. Overall, they seek stories that are both thought-provoking and thoroughly enjoyable, and aren't shy about awarding a top rating when a book delivers.",
-    "int_id": "u_12_51",
-    "item_information": "**Book Title**: The Sugar Queen\n        **Genre & Themes**: fiction, magical-realism, favorites, chick-lit, romance, fantasy, contemporary\n        **Average Reader Rating**: 3.98\n        **Story Overview**: In this irresistible novel, Sarah Addison Allen, author of the New York Times bestselling debut, Garden Spells, tells the tale of a young woman whose family secrets--and secret passions--are about to change her life forever.\nJosey Cirrini is sure of three things: winter is her favorite season, she's a sorry excuse for a Southern belle, and sweets are best eaten in the privacy of her closet. For while Josey has settled into an uneventful life in her mother's house, her one consolation is the...\n        **Written by**: Sarah Addison Allen\n        **First Published**: 2008",
-    "true_rating": 2,
-    "true_review": "Light, fluffy and, to be honest, a little bit weird.",
-    "predicted_rating": 4.5,
-    "predicted_review": "The Sugar Queen was a delightful blend of humor and heartfelt moments that kept me engaged from start to finish. I loved the magical realism woven into Josey's story, and the Southern charm added a lovely backdrop. The characters felt real and relatable, and I found myself laughing and tearing up in equal measure. The narration was top-notch, making it an even more enjoyable experience. A sweet treat of a book that I wouldn't hesitate to recommend!",
-    "retrieved_interactions": [
-        {
-            "content": "**Book Title**: The Girl Who Was Saturday Night\n        **Genre & Themes**: fiction, canadian, favorites, canada, contemporary, book-club, canadiana\n        **Average Reader Rating**: 3.8\n        **Story Overview**: Heather O'Neill charmed readers in the hundreds of thousands with her sleeper hit, Lullabies for Little Criminals, which documented with a rare and elusive magic the life of a young dreamer on the streets of Montreal. Now, in The Girl Who Was Saturday Night, she returns to the grubby, enchanted city with a light and profound tale of the vice of fame and the ties of family.\nNineteen years old, free of prospects, and inescapably famous, the twins Nicholas and Nouschka Tremblay are trying to...\n        **Written by**: Heather O'Neill\n        **First Published**: 2014",
-            "updated": "False",
-            "chunk_id": "u_12_22",
-            "true_rating": 3,
-            "chunk_type": "interaction",
-            "true_review": "A strange little story containing oddball, downtrodden sibling characters, who were raised in a dysfunctional show biz family, virtually unknown to anyone outside their home province. They are now \"adults\", but their behaviour doesn't reflect it. The entire family seems to be perched on the precipice of a mental breakdown of epic proportion. Interwoven with intense dissatisfaction with their lives, political reference that I fear only a Canadian would understand, and bizarre appearances by neighbourhood cats that I can't quite figure out, the writing is gritty and edgy but contains a level of metaphor that goes beyond my ability or desire to figure out.",
-            "user_id": "u_12"
-        },
-        {
-            "content": "**Book Title**: The Night Circus\n        **Genre & Themes**: fantasy, favorites, fiction, \uff46\uff41\uff56\uff4f\uff52\uff49\uff54\uff45\uff53, book-club, romance, historical-fiction\n        **Average Reader Rating**: 4.03\n        **Story Overview**: The circus arrives without warning. No announcements precede it. It is simply there, when yesterday it was not. Within the black-and-white striped canvas tents is an utterly unique experience full of breathtaking amazements. It is called Le Cirque des Reves, and it is only open at night.\nBut behind the scenes, a fierce competition is underway - a duel between two young magicians, Celia and Marco, who have been trained since childhood expressly for this purpose by their mercurial instructors....\n        **Written by**: Erin Morgenstern\n        **First Published**: 2012",
-            "true_rating": 3,
-            "updated": "False",
-            "chunk_type": "interaction",
-            "true_review": "Fantasy or magical fiction is not a genre I usually read. Honestly, I bought the book based wholly in the cover art and the way it felt in my hand. But even so, I did enjoy the writing and some of the characters. I do, however, think that I have likely fulfilled my fantasy requirements for the next year or two...",
-            "chunk_id": "u_12_15",
-            "user_id": "u_12"
-        },
-        {
-            "content": "**Book Title**: My Name Is Memory\n        **Genre & Themes**: fantasy, historical-fiction, chick-lit, paranormal, book-club, adult-fiction, reincarnation\n        **Average Reader Rating**: 3.7\n        **Story Overview**: From the New York Times-bestselling author of The Sisterhood of the Traveling Pantsand The Last Summer (of You and Me)comes an imaginative, inspired, magical book-a love story that lasts more than a lifetime. \nDaniel has spent centuries falling in love with the same girl. Life after life, crossing continents and dynasties, he and Sophia (despite her changing name and form) have been drawn together-and he remembers it all. Daniel has \"the memory\", the ability to recall past lives and recognize...\n        **Written by**: Ann Brashares\n        **First Published**: 2010",
-            "true_rating": 3,
-            "chunk_type": "interaction",
-            "user_id": "u_12",
-            "true_review": "I think if I had tried to read this book in print, it might have left me very confused. As it is, the audiobook reduced some of the back and forth in time confusion, by implementing separate narrators in the different time sequences.The premise of the story, two lovers travelling in time, being reborn and passing each other, sometimes connecting and sometimes not, was a tantalizing one. The idea of repeated reincarnation and reconnecting with people we have loved before, in order to right the wrongs we have done one another, is certainly very compelling. Overall, a pleasing listen even though, by the end, I just wanted them to \"get on with it.\" Good writing, but the story became a little weighted down and monotonous after passing through 1500 years from start to finish.",
-            "chunk_id": "u_12_48",
-            "updated": "False"
-        }
-    ],
-    "memory_added": true
+    "user_id": "u_06",
+    "user_information": "This reader has little patience for self-absorbed protagonists and shallow stories, especially when they are presented as feminist. She is unimpressed by autobiographical fiction that she perceives as stagnant and selfish, and clearly dislikes the term \"feminazi.\" Although she once tried to embrace certain feminist works, she now finds them cautionary tales of affluence and navel-gazing. If a book doesn't immediately grab her attention, she's quick to abandon it.",
+    "int_id": "u_06_01",
+    "item_information": "**Book Title**: Fear of Flying\n        **Genre & Themes**: fiction, feminism, classics, favorites, 1001-books, 1001, erotica\n        **Average Reader Rating**: 3.44\n        **Story Overview**: Bored with her marriage, a psychoanalyst's wife embarks on a wild, life-changing affair\nAfter five years, Isadora Wing has come to a crossroads in her marriage: Should she and her husband stay together or get divorced? Accompanying her husband to an analysts' conference in Vienna, she ditches him and strikes out on her own, crisscrossing Europe in search of a man who can inspire uninhibited passion. But, as she comes to learn, liberation and happiness are not necessarily the same thing.\nA...\n        **Written by**: Erica Jong\n        **First Published**: None",
+    "true_rating": 3,
+    "true_review": "This 'was' one of the 'important feminist works' of the early 70s. Fighting to 'over throw' the double standard, refusing to be subjugated into marriage, and having numerous shallow sexual encounters are all covered adnauseam in this 'biographical' account. It does not conclude with a happy ending. I, of course, read this when it was first published and I tried to like it since I was a 'part-time feminazi' myself. It is a cautionary tale and pathological study of affluence, belly button gazing and disaffected young women.",
+    "predicted_rating": 3,
+    "predicted_review": "This 'was' one of the 'important feminist works' of the early 70s. Fighting to 'over throw' the double standard, refusing to be subjugated into marriage, and having numerous shallow sexual encounters are all covered adnauseam in this 'biographical' account. It does not conclude with a happy ending. I, of course, read this when it was first published and I tried to like it since I was a 'part-time feminazi' myself. It is a cautionary tale and pathological study of affluence, belly button gazing and disaffected young women.",
+    "previous_interactions_count": 0,
+    "initial_interaction": true
 }

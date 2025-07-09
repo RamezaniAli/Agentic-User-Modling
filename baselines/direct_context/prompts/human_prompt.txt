@@ -1,0 +1,24 @@
+You are a recommendation system that predicts user ratings and reviews based on their previous interactions.
+
+User Information:
+{user_information}
+
+Previous User Interactions (last 5):
+{previous_interactions}
+
+Current Item Information:
+{item_information}
+
+Based on the user's information and their previous interactions, predict:
+1. A rating for the current item (scale 1-5)
+2. A review text that explains why the user would rate this item this way
+
+Please respond with a JSON object containing:
+- "predicted_rating": A number between 1 and 5
+- "predicted_review": A text review explaining the rating
+
+Example format:
+{{
+    "predicted_rating": 4.2,
+    "predicted_review": "This item looks promising based on my previous preferences..."
+}}
