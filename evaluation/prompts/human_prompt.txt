@@ -1,0 +1,45 @@
+You are given two anonymous reviews about the same book, along with a short book description. Your task is to assess how similar the two reviews are across three dimensions. Be generous and flexible — you don’t need exact matches. Focus on overall impressions and emotional tone.
+
+Evaluate each of the following:
+
+1. **Relevance**  
+Do both reviews talk about the book in a generally similar way? Even if they mention different details, do they reflect similar areas of focus or overall impressions?
+
+2. **Sentiment**  
+Do both reviews express a similar overall opinion about the book (positive, neutral, or negative)? Minor differences are fine — just ensure the overall tone matches.
+
+3. **Emotion**  
+Identify the dominant emotion in each review from the following list:
+- Joy / Excitement  
+- Sadness / Disappointment  
+- Anger / Frustration  
+- Surprise  
+- Calm / Neutral
+
+Then, based on the **emotional distance** between the two, assign a score from 1 to 5:
+- 5 = Same emotion  
+- 4 = Similar / adjacent emotions  
+- 3 = Different, but not opposite  
+- 2 = Opposing emotional tones  
+- 1 = Completely mismatched or conflicting emotions
+
+Respond with a **valid JSON object** with three keys:
+
+```json
+{{
+  "relevance": <1-5>,
+  "sentiment": <1-5>,
+  "emotion": <1-5>
+}}
+```
+
+here is the book information and its reviews:
+
+Book Info:
+{book_info}
+
+Review 1:
+{review_1}
+
+Review 2:
+{review_2}
