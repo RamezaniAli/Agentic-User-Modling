@@ -1,8 +1,93 @@
 {
-    "user_id": "u_10",
-    "user_information": "This reader is drawn to memoirs and spiritual texts that offer practical life lessons, particularly those rooted in Buddhist philosophy. She appreciates works that inspire positive change and self-reflection, readily sharing favorite quotes and passages. Though generally enthusiastic, she\u2019s not afraid to critique writing styles or question concepts that feel overly simplistic or disconnected from real-world application. A touchstone of hers is the importance of living with love, gratitude, and kindness, even amidst life's challenges.",
-    "int_id": "u_10_66",
-    "item_information": "**Book Title**: Am I Black Enough For You?\n        **Genre & Themes**: non-fiction, australian, memoir, australia, politics, indigenous, nonfiction\n        **Average Reader Rating**: 3.8\n        **Story Overview**: I'm Aboriginal. I'm just not the Aboriginal person a lot of people want or expect me to be.\nWhat does it mean to be Aboriginal? Why is Australia so obsessed with notions of identity? Anita Heiss, successful author and passionate campaigner for Aboriginal literacy, was born a member of the Wiradjuri nation of central New South Wales, but was raised in the suburbs of Sydney and educated at the local Catholic school. She is Aboriginal - however, this does not mean she likes to go barefoot and,...\n        **Written by**: Anita Heiss\n        **First Published**: 2012",
-    "true_rating": 1,
-    "predicted_rating": 3.2295081967213113
+    "user_id": "u_01",
+    "user_information": "This reader deeply connects with protagonists who demonstrate innocence and heart, particularly in historical settings, but dislikes snobby or superior characters. They value books that offer memorable insights or morals, especially those related to maturity and trust. While historical fiction is a clear favorite, the reader appreciates age-appropriate themes and reasonable character choices, and will downgrade stories that lose their narrative grip midway. They are also quietly attentive to language, picking up new vocabulary along the way.",
+    "int_id": "u_01_44",
+    "item_information": "**Book Title**: Marie Antoinette: Princess of Versailles, Austria - France, 1769 (Royal Diaries #4)\n        **Genre & Themes**: historical-fiction, young-adult, historical, fiction, royal-diaries, childrens, childhood\n        **Average Reader Rating**: 3.87\n        **Story Overview**: \"I look up now into the oval mirror and see barely a trace of the mud-splattered girl tearing through the woodland on her horse, or the barefoot girl wading at Schonbrunn... I have become what Mama set out for me to be. Majestic. A Dauphine and eventually a Queen.\" So writes the headstrong 13-year-old Maria Antonia--future Queen of France--in her diary on October 23, 1769. In this engrossing addition to the Royal Diaries series (Elizabeth I: Red Rose of the House of Tudor, Cleopatra VII:...\n        **Written by**: Kathryn Lasky\n        **First Published**: 2000",
+    "true_rating": 3,
+    "true_review": "This book had beautiful language, exotic foods, and funny comments. There was also a very true moral: There is a difference between public behavior and private behavior. Despite all the good points, my biggest disapprovals were the hypocrisy and Marie Antoinette's snobbish behavior. (I don't know whether that was her own fault or not.)",
+    "persona": "User has a strong preference for engaging and relatable narratives that explore themes of maturity and responsible decision-making. They connect deeply with characters and stories that provide emotional depth and moral lessons, particularly in historical contexts.",
+    "predicted_rating": 4.5,
+    "predicted_review": "This book offers a captivating glimpse into the life of a young Marie Antoinette, filled with innocence and emotional depth. It's a delightful read for those who appreciate historical narratives that resonate with maturity and trust.",
+    "retrieved_chunk_ids": {
+        "self": [
+            "u_01_21",
+            "u_01_22",
+            "u_01_39"
+        ],
+        "peer": []
+    },
+    "retrieved_interactions": {
+        "self": [
+            {
+                "content": "**Book Title**: Mary, Queen of Scots: Queen Without a Country\n        **Genre & Themes**: historical-fiction, young-adult, historical, royal-diaries, fiction, middle-grade, children-s\n        **Average Reader Rating**: 3.8\n        **Story Overview**: Mary, the young Scottish queen, is sent a diary from her mother in which she records her experiences living at the court of France's King Henry II as she awaits her marriage to Henry's son, Francis.\n        **Written by**: Kathryn Lasky\n        **First Published**: 2002",
+                "user_id": "u_01",
+                "true_rating": 5,
+                "updated": "True",
+                "chunk_type": "interaction",
+                "feed_back": "[{\"note\": \"User connected deeply with Prudence's character, appreciating her innocence and the historical context, which enhanced their interest in the Revolutionary War.\", \"success_score\": \"1.0\"}, {\"note\": \"User connected deeply with Prudence's character, appreciating her innocence and the historical context, which enhanced their interest in the Revolutionary War.\", \"success_score\": \"1.0\"}, {\"note\": \"User connected deeply with Mary's character, appreciating her innocence and the historical context, which enhanced their enjoyment of the story.\", \"success_score\": \"1.0\"}, {\"note\": \"User connected deeply with Prudence's character, appreciating her innocence and the historical context, which enhanced their enjoyment of the story.\", \"success_score\": \"1.0\"}, {\"note\": \"User connected deeply with Mary's character, appreciating her innocence and the historical context, which enhanced their enjoyment of the story.\", \"success_score\": \"1.0\"}]",
+                "chunk_id": "u_01_21",
+                "true_review": "I'm officially Team Mary. Mary, Queen of Scots is sweet and funny, unlike her cousin Elizabeth 1. She's the perfect example of a princess's character."
+            },
+            {
+                "content": "**Book Title**: Elizabeth I: Red Rose of the House of Tudor, England, 1544 (Royal Diaries #1)\n        **Genre & Themes**: historical-fiction, young-adult, fiction, royal-diaries, middle-grade, england, series\n        **Average Reader Rating**: 3.9\n        **Story Overview**: November 10, 1544. I have been living with this constant fear of exile now for two days. So far I have heard nothing. Plans seem to proceed as normal for our move to Ashridge. This palace, too, is becoming quite filthy, what with all the banqueting and people and gaming between Michaelmas Feast and the feast of All Saints' Day. The roses bloom in our garden with such vigor, but the stench from the courtyard over the wall outside the kitchens is unbearable.\n        **Written by**: Kathryn Lasky\n        **First Published**: 1999",
+                "updated": "True",
+                "true_rating": 1,
+                "true_review": "After reading \"My Lady Jane\", I was inspired to decide if I was Team Elizabeth (after Elizabeth 1) or Team Mary (after Mary, Queen of Scots). While reading this book, I had little sympathy for Elizabeth 1 because she was usually mean to people and self-centered. I was also disgusted by England's lack of cleanliness.",
+                "chunk_type": "interaction",
+                "feed_back": "[{\"note\": \"User expressed strong dislike for Elizabeth I's character, finding her unrelatable and mean, which aligns with their preference for relatable protagonists.\", \"success_score\": \"0.2\"}, {\"note\": \"User expressed strong dislike for Elizabeth I's character, finding her unrelatable and mean, which aligns with their preference for relatable protagonists.\", \"success_score\": \"0.2\"}, {\"note\": \"User expressed strong dislike for Elizabeth I's character, finding her unrelatable and mean, which aligns with their preference for relatable protagonists.\", \"success_score\": \"0.2\"}, {\"note\": \"User expressed strong dislike for Elizabeth I's character, finding her unrelatable and mean, which aligns with their preference for relatable protagonists.\", \"success_score\": \"0.2\"}, {\"note\": \"User expressed strong dislike for Elizabeth I's character, finding her unrelatable and mean, which aligns with their preference for relatable protagonists.\", \"success_score\": \"0.2\"}]",
+                "chunk_id": "u_01_22",
+                "user_id": "u_01"
+            },
+            {
+                "content": "**Book Title**: Anne Frank\n        **Genre & Themes**: ww-ii, biography-autobiography-memoir, the-food-bank, biographies-auto-biographies\n        **Average Reader Rating**: 4.0\n        **Story Overview**: Traces the life of the Jewish girl who hid with seven other people in an attic for two years in Nazi-occupied Holland and chronicled her day-to-day life in a diary which was discovered after her death in a German concentration camp.\n        **Written by**: Laura Tyler, Lina Tridenti\n        **First Published**: None",
+                "chunk_type": "interaction",
+                "updated": "False",
+                "true_review": "I love Anne Frank's story so much.",
+                "true_rating": 5,
+                "chunk_id": "u_01_39",
+                "user_id": "u_01"
+            }
+        ],
+        "peer": []
+    },
+    "updated_retrieved_interactions": [
+        {
+            "chunk_id": "u_01_39",
+            "note": "User expressed strong admiration for Anne Frank's story, indicating a connection with themes of innocence and resilience, aligning with their historical fiction preference.",
+            "success_score": "1.0"
+        },
+        {
+            "chunk_id": "u_01_21",
+            "note": "User connected deeply with Mary's character, appreciating her innocence and the historical context, which enhanced their enjoyment of the story.",
+            "success_score": "1.0"
+        },
+        {
+            "chunk_id": "u_01_22",
+            "note": "User expressed strong dislike for Elizabeth I's character, finding her unrelatable and mean, which aligns with their preference for relatable protagonists.",
+            "success_score": "0.2"
+        }
+    ],
+    "updated_persona": "User has a strong preference for historical narratives that feature innocent and relatable protagonists. They value stories with moral lessons and emotional depth, particularly those that explore the complexities of character behavior."
+}
+
+
+{
+     "updated_retrieved_interactions": [
+        {
+            "chunk_id": "u_01_39",
+            "note": "User expressed strong admiration for Anne Frank's story, indicating a connection with themes of innocence and resilience, aligning with their historical fiction preference.",
+            "success_score": "1.0"
+        },
+        {
+            "chunk_id": "u_01_21",
+            "note": "User connected deeply with Mary's character, appreciating her innocence and the historical context, which enhanced their enjoyment of the story.",
+            "success_score": "1.0"
+        },
+        {
+            "chunk_id": "u_01_22",
+            "note": "User expressed strong dislike for Elizabeth I's character, finding her unrelatable and mean, which aligns with their preference for relatable protagonists.",
+            "success_score": "0.2"
+        }
+    ],
+    "updated_persona": "User has a strong preference for historical narratives that feature innocent and relatable protagonists. They value stories with moral lessons and emotional depth, particularly those that explore the complexities of character behavior."
 }

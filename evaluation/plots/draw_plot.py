@@ -164,7 +164,7 @@ def plot_mae_analysis_from_averages(methods_dict, title, key_name=None):
                     data = json.load(f)
                 
                 # Update subplot title with actual filename if available
-                subplot_title = Path(json_file).stem
+                subplot_title = 'U_'+Path(json_file).stem.split('_')[2]
                 
                 # Determine what to plot based on key_name parameter
                 if key_name:
