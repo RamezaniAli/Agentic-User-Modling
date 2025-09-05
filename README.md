@@ -1,1 +1,5 @@
 Personalized recommender systems often represent users as static vectors, overlooking the fact that human preferences evolve over time and are richly expressed through language---particularly in the reviews users write. In this work, we explore agentic user modeling, where a user is represented by a generative agent powered by a large language model (LLM). This agent \textbf{learns} from a user’s historical reviews (text and ratings) to perform two key tasks:
+    - predict the rating the user would assign to a new item, and
+    - generate a review that matches the user's distinctive writing style.
+
+This approach enables a more dynamic and human-aligned representation of users, one that can \textbf{adapt} as their preferences change. Accurate simulation of user behavior has significant practical benefits: platforms like Yelp or Amazon could preview user reactions to new products, simulate ``what-if'' scenarios, or bootstrap cold-start user profiles. Beyond these applications, our work \textbf{synthesizes} research in memory-augmented LLMs and retrieval-augmented reasoning to advance controllable, personalized text generation.
